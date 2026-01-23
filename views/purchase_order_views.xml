@@ -7,13 +7,13 @@
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <!-- Insertar campos del pedido en la pestaña "Other Information" -->
-            <xpath expr="//page[@name='other_info']/group" position="inside">
+            <xpath expr="//sheet//group" position="inside">
                 <group string="Campos extra SIDSA" col="4">
                     <field name="sid_date_planned" readonly="1"/>
                     <field name="sid_order_id_purchase_order_line_count" readonly="1"/>
                     <field name="sid_regularizado"/>
-                    <field name="amount_untaxed_pending" readonly="1"/>
-                    <field name="amount_untaxed_total" readonly="1"/>
+                    <field name="sid_pendiente" readonly="1"/>
+                    <field name="sid_total" readonly="1"/>
                 </group>
             </xpath>
 
