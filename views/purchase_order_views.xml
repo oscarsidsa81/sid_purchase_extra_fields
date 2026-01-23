@@ -12,8 +12,8 @@
                     <field name="sid_date_planned" readonly="1"/>
                     <field name="sid_order_id_purchase_order_line_count" readonly="1"/>
                     <field name="sid_regularizado"/>
-                    <field name="sid_pendiente" readonly="1"/>
-                    <field name="sid_total" readonly="1"/>
+                    <field name="amount_untaxed_pending" readonly="1"/>
+                    <field name="amount_untaxed_total" readonly="1"/>
                 </group>
             </xpath>
 
