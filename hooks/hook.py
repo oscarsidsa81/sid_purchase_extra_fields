@@ -10,25 +10,22 @@ def post_init_fill_sid_has_po_delay(cr, registry):
     if not lines:
         return
 
-    # 1) Recompute: primero pending_line, luego sid_po_line_delay
-    lines.invalidate_cache(fnames=["pending_line"])
-    env.add_to_compute(POL._fields["pending_line"], lines)
-    env.recompute()
-
-    lines.invalidate_cache(fnames=["sid_po_line_delay"])
-    env.add_to_compute(POL._fields["sid_po_line_delay"], lines)
-    env.recompute()
+    # 1) Recompute store fields en Odoo 15 (sin env.recompute)
+    # Primero pending_line porque sid_po_line_delay depende de él
+    lines._recompute_fields(["pending_line"])
+    lines._recompute_fields(["sid_po_line_delay"])
 
     # 2) Sale lines enlazadas
     linked_sale_line_ids = set(lines.mapped("sale_line_id").ids)
     if not linked_sale_line_ids:
         return
 
-    late_lines = lines.filtered(lambda l: l.sid_po_line_delay in ("1_week_del","2_week_del","4_week_del","more_del"))
+    late_lines = lines.filtered(lambda l: l.sid_po_line_delay in ("1_week_del", "2_week_del", "4_week_del", "more_del"))
     late_sale_line_ids = set(late_lines.mapped("sale_line_id").ids)
 
     linked_sale_lines = SOL.search([("id", "in", list(linked_sale_line_ids))])
 
+    # 3) Batch writes
     if late_sale_line_ids:
         linked_sale_lines.filtered(lambda s: s.id in late_sale_line_ids).write({"sid_has_po_delay": True})
     linked_sale_lines.filtered(lambda s: s.id not in late_sale_line_ids).write({"sid_has_po_delay": False})
