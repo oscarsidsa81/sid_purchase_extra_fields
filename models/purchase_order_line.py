@@ -106,7 +106,7 @@ class PurchaseOrderLine ( models.Model ) :
 
     sid_unit_weight_po_line = fields.Float (
         string="Peso Unitario (po)",
-        related="sid_unit_weight",
+        related="sid_unit_weight_product",
         store=True,
         readonly=False,
     )
