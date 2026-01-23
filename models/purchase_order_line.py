@@ -162,7 +162,7 @@ def _compute_sid_po_line_delay(self) :
         elif diff_days <= 30 :
             line.sid_po_line_delay = "30_days"
         else :
-            line.sid_po_line_delay = ""
+            line.sid_po_line_delay = False
 
 
 
