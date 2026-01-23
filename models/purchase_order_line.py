@@ -74,7 +74,7 @@ class PurchaseOrderLine ( models.Model ) :
         ("30_days", "Quedan 30 días"),
         ("sin_ret", "+30 días"),
     ],
-    string="Retraso",
+    string="Retraso por ítem",
     compute="_compute_sid_po_line_delay",
     store=False,  # 🔒 seguro: sin escrituras en BD
     readonly=True,
