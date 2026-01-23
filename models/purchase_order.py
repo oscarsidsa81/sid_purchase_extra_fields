@@ -12,22 +12,6 @@ class PurchaseOrder(models.Model):
         readonly=True,
         help="Texto con la fecha prevista de recepción (derivada de date_planned).",
     )
-    # Copia almacenada del HS code para la línea
-    sid_hs_code_po_line = fields.Char (
-        string="HS Code (po)",
-        related="sid_hs_code",
-        store=True,
-        readonly=False,
-        help="HS Code de la línea de Compra",
-    )
-
-    sid_hs_code = fields.Char (
-        string="HS Code (Product)",
-        related="product_id.hs_code",
-        store=False,
-        readonly=False,
-        help="HS Code del Producto",
-    )
 
     sid_order_id_purchase_order_line_count = fields.Integer(
         string="Order Reference count",
@@ -37,16 +21,10 @@ class PurchaseOrder(models.Model):
         help="Número de líneas del pedido.",
     )
 
-    sid_parcial = fields.Boolean(
-        string="Recepción parcial",
-        default=False,
-        help="Marca manual para indicar que la recepción será/ha sido parcial.",
-    )
-
-    sid_pendiente = fields.Monetary(
+    amount_untaxed_pending = fields.Monetary(
         string="Base pendiente",
         currency_field="currency_id",
-        compute="_compute_sid_pendiente",
+        compute="_compute_amount_untaxed_pending",
         store=True,
         readonly=True,
         help="Suma de (qty_to_invoice * price_unit) de las líneas.",
@@ -61,10 +39,10 @@ class PurchaseOrder(models.Model):
         ),
     )
 
-    sid_total = fields.Monetary(
+    amount_untaxed_total = fields.Monetary(
         string="Base facturada",
         currency_field="currency_id",
-        compute="_compute_sid_total",
+        compute="_compute_amount_untaxed_total",
         store=True,
         readonly=True,
         help="Suma de (qty_invoiced * price_unit) de las líneas.",
@@ -97,17 +75,17 @@ class PurchaseOrder(models.Model):
             order.sid_order_id_purchase_order_line_count = len(order.order_line)
 
     @api.depends("order_line.qty_to_invoice", "order_line.price_unit", "order_line.currency_id")
-    def _compute_sid_pendiente(self):
+    def _compute_amount_untaxed_pending(self):
         for order in self:
             total = 0.0
             for line in order.order_line:
                 total += (line.qty_to_invoice or 0.0) * (line.price_unit or 0.0)
-            order.sid_pendiente = total
+            order.amount_untaxed_pending = total
 
     @api.depends("order_line.qty_invoiced", "order_line.price_unit", "order_line.currency_id")
-    def _compute_sid_total(self):
+    def _compute_amount_untaxed_total(self):
         for order in self:
             total = 0.0
             for line in order.order_line:
                 total += (line.qty_invoiced or 0.0) * (line.price_unit or 0.0)
-            order.sid_total = total
+            order.amount_untaxed_total = total

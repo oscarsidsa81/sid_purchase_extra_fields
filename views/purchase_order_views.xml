@@ -9,27 +9,26 @@
             <!-- Insertar campos del pedido en la pestaña "Other Information" -->
             <xpath expr="//page[@name='other_info']/group" position="inside">
                 <group string="Campos extra SIDSA" col="4">
-                    <field name="x_date_planned" readonly="1"/>
-                    <field name="x_order_id_purchase_order_line_count" readonly="1"/>
-                    <field name="x_parcial"/>
-                    <field name="x_regularizado"/>
-                    <field name="x_pendiente" readonly="1"/>
-                    <field name="x_total" readonly="1"/>
+                    <field name="sid_date_planned" readonly="1"/>
+                    <field name="sid_order_id_purchase_order_line_count" readonly="1"/>
+                    <field name="sid_regularizado"/>
+                    <field name="amount_untaxed_pending" readonly="1"/>
+                    <field name="amount_untaxed_total" readonly="1"/>
                 </group>
             </xpath>
 
             <!-- Añadir columnas a la lista de líneas dentro del pedido -->
             <xpath expr="//field[@name='order_line']/tree" position="inside">
-                <field name="x_hs_code_po_line" optional="show"/>
-                <field name="x_invoice" optional="show"/>
-                <field name="x_pendiente" optional="show"/>
-                <field name="x_pais" optional="hide"/>
-                <field name="x_qty_inv_sale" optional="hide"/>
-                <field name="x_sale_date" optional="hide"/>
-                <field name="x_unit_weight_po_line" optional="hide"/>
-                <field name="x_weight_subtotal" optional="show"/>
-                <field name="x_retraso" optional="hide" readonly="1"/>
-                <field name="x_unit_price_difference" optional="hide" readonly="1"/>
+                <field name="sid_hs_code_po_line" optional="show"/>
+                <field name="sid_invoice" optional="show"/>
+                <field name="pending_line" optional="show"/>
+                <field name="supplier_country" optional="hide"/>
+                <field name="sid_qty_inv_sale" optional="hide"/>
+                <field name="sid_sale_date" optional="hide"/>
+                <field name="sid_unit_weight_po_line" optional="hide"/>
+                <field name="sid_weight_subtotal" optional="show"/>
+                <field name="sid_po_line_delay" optional="show"/>
+                <field name="sid_unit_price_difference" optional="hide"/>
             </xpath>
         </field>
     </record>
