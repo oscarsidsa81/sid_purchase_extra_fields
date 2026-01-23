@@ -6,6 +6,7 @@
     "summary": "Campos extra en pedidos de compra y líneas (HS, pendientes, pesos, bases facturadas, etc.).",
     "author": "SIDSA / Custom",
     "license": "LGPL-3",
+    "post_init_hook" : "post_init_fill_sid_has_po_delay",
     "depends": ["purchase", "sale_management", "delivery","oct_fecha_contrato_compras", "oct_fecha_contrato_ventas", "sid_sale_line_custom_fields"],
     "data": [
         "views/purchase_order_views.xml",
