@@ -76,7 +76,7 @@ class PurchaseOrderLine ( models.Model ) :
     ],
     string="Retraso por ítem",
     compute="_compute_sid_po_line_delay",
-    store=False,  # 🔒 seguro: sin escrituras en BD
+    store=True,  # 🔒 seguro: sin escrituras en BD
     readonly=True,
 )
 
