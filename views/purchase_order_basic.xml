@@ -30,6 +30,11 @@
                 <field name="sid_po_line_delay" optional="show"/>
                 <field name="sid_unit_price_difference" optional="hide"/>
             </xpath>
+
+            <!-- Líneas: permitir wrap en la descripción (name) -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="attributes">
+                <attribute name="class">sid_wrap_2lines</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

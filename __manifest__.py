@@ -9,7 +9,8 @@
     "post_init_hook" : "post_init_fill_sid_has_po_delay",
     "depends": ["purchase", "sale_management", "delivery","oct_fecha_contrato_compras", "oct_fecha_contrato_ventas", "sid_sale_line_custom_fields"],
     "data": [
-        "views/purchase_order_views.xml",
+        "views/purchase_order_basic.xml",
+        "views/purchase_order_line_basic.xml",
     ],
     "installable": True,
     "application": False,
