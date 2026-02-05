@@ -1,5 +1,1 @@
-# -*- coding: utf-8 -*-
-from . import purchase_order
-from . import purchase_order_line
-from . import sale_order
-from . import product_template
+# Meta module: no models

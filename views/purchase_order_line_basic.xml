@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Placeholder: vistas mínimas de purchase.order.line (por ahora no se heredan vistas directamente aquí).
-         La funcionalidad de presentación se traslada a sid_purchase_views.
-    -->
-</odoo>
-

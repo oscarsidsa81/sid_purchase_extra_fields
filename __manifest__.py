@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "SIDSA - Purchase Extra Fields",
+    "name": "SIDSA - Purchase Extra Fields (meta)",
     "version": "15.0.1.0.0",
     "category": "Purchases",
-    "summary": "Campos extra en pedidos de compra y líneas (HS, pendientes, pesos, bases facturadas, etc.).",
+    "summary": "Modulo paraguas para compatibilidad. Agrupa dependencias funcionales de compras.",
     "author": "SIDSA / Custom",
     "license": "LGPL-3",
-    "post_init_hook" : "post_init_fill_sid_has_po_delay",
-    "depends": ["purchase", "sale_management", "delivery","oct_fecha_contrato_compras", "oct_fecha_contrato_ventas", "sid_sale_line_custom_fields"],
-    "data": [
-        "views/purchase_order_basic.xml",
-        "views/purchase_order_line_basic.xml",
+    "depends": [
+        "sid_purchase_core",
+        "sid_purchase_delay_sync",
+        "sid_misc"
     ],
+    "data": [],
     "installable": True,
     "application": False,
 }
