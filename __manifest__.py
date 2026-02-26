@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "SIDSA - Purchase Extra Fields (meta)",
+    "name": "sid_purchase_extra_fields",
     "version": "15.0.1.0.0",
     "category": "Purchases",
     "summary": "Modulo paraguas para compatibilidad. Agrupa dependencias funcionales de compras.",
